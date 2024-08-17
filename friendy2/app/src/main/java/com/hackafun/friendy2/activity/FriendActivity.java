@@ -2,13 +2,18 @@ package com.hackafun.friendy2.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hackafun.friendy2.R;
 import com.hackafun.friendy2.adapter.FriendAdapter;
 import com.hackafun.friendy2.model.Friend;
@@ -25,6 +30,7 @@ public class FriendActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FriendAdapter friendAdapter;
     private List<Friend> friendList;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +60,34 @@ public class FriendActivity extends AppCompatActivity {
         }
         friendAdapter = new FriendAdapter(friendList);
         recyclerView.setAdapter(friendAdapter);
+
+        // Initialize BottomNavigationView and set its onNavigationItemSelectedListener
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_chat:
+                        Intent chatIntent = new Intent(FriendActivity.this, ChatActivity.class);
+                        startActivity(chatIntent);
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.nav_home:
+                        // Handle home action
+                        Intent friendsIntent = new Intent(FriendActivity.this, MainActivity.class);
+                        startActivity(friendsIntent);
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.nav_friends:
+                        return true;
+
+                    default:
+                        return false;
+                }
+            }
+        });
     }
 
     private List<Friend> getFriendsList() throws ParseException {

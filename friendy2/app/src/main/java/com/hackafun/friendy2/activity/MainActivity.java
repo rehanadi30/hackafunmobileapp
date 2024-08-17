@@ -13,23 +13,12 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hackafun.friendy2.R;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageButton ib;
     private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Initialize ImageButton and set its onClickListener
-        ib = findViewById(R.id.imageButtonMap);
-        ib.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
 
         // Initialize BottomNavigationView and set its onNavigationItemSelectedListener
         bottomNavigationView = findViewById(R.id.bottom_navigation);
