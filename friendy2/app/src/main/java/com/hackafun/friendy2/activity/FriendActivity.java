@@ -39,12 +39,21 @@ public class FriendActivity extends AppCompatActivity {
 
         // Initialize views
         ImageView mapIcon = findViewById(R.id.map_icon);
+        ImageView profileIcon = findViewById(R.id.profile_icon);
         recyclerView = findViewById(R.id.recycler_view);
 
         // Optionally, set up map icon click listener
         mapIcon.setOnClickListener(v -> {
             // Handle map icon click
             Intent intent = new Intent(FriendActivity.this, MapActivity.class);
+            startActivity(intent);
+            overridePendingTransition(0, 0);
+        });
+
+        profileIcon.setOnClickListener(v -> {
+            // Handle profile icon click
+//            Intent intent = new Intent(FriendActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(FriendActivity.this, ScanningActivity.class);
             startActivity(intent);
             overridePendingTransition(0, 0);
         });

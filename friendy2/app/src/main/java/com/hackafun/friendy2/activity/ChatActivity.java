@@ -2,9 +2,14 @@ package com.hackafun.friendy2.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.hackafun.friendy2.R;
 import com.hackafun.friendy2.adapter.ChatAdapter;
 import com.hackafun.friendy2.model.Chat;
@@ -12,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,5 +42,34 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         recyclerView.setAdapter(adapter);
+
+        // Initialize BottomNavigationView and set its onNavigationItemSelectedListener
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.nav_chat:
+                        return true;
+
+                    case R.id.nav_home:
+                        // Handle home action
+                        Intent homeIntent = new Intent(ChatActivity.this, MainActivity.class);
+                        startActivity(homeIntent);
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    case R.id.nav_friends:
+                        Intent friendsIntent = new Intent(ChatActivity.this, FriendActivity.class);
+                        startActivity(friendsIntent);
+                        overridePendingTransition(0, 0);
+                        return true;
+
+                    default:
+                        return false;
+                }
+            }
+        });
+
     }
 }
