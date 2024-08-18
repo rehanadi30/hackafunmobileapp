@@ -1,10 +1,12 @@
 package com.hackafun.friendy2.activity;
 
-import static com.mapbox.maps.plugin.gestures.GesturesUtils.getGestures;
 import static com.mapbox.maps.plugin.locationcomponent.LocationComponentUtils.getLocationComponent;
+import static com.mapbox.maps.plugin.gestures.GesturesUtils.getGestures;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -29,6 +31,12 @@ import com.mapbox.maps.plugin.gestures.OnMoveListener;
 import com.mapbox.maps.plugin.locationcomponent.LocationComponentPlugin;
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorBearingChangedListener;
 import com.mapbox.maps.plugin.locationcomponent.OnIndicatorPositionChangedListener;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MapActivity extends AppCompatActivity {
     MapView mapView;
@@ -107,9 +115,32 @@ public class MapActivity extends AppCompatActivity {
                 mapView.getMapboxMap().setCamera(new CameraOptions.Builder().zoom(20.0).build());
                 LocationComponentPlugin locationComponentPlugin = getLocationComponent(mapView);
                 locationComponentPlugin.setEnabled(true);
-                LocationPuck2D locationPuck2D = new LocationPuck2D();
-                locationPuck2D.setBearingImage(ImageHolder.from(R.drawable.baseline_location_on_24)); // TODO: change this to AVATAR
-                locationComponentPlugin.setLocationPuck(locationPuck2D);
+
+                // Load image from URL using Picasso
+                String imageUrl = "https://cdn.discordapp.com/attachments/1274359491738992663/1274584635187396618/my_cartoon.PNG?ex=66c2c8f1&is=66c17771&hm=bacad80606ccd149174f4a6daf182dc29e8bb9084d69645757b2117c426564f9&"; // Replace with your image URL
+                Picasso.get().load(imageUrl).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        // Resize the bitmap
+                        Bitmap resizedBitmap = resizeBitmap(bitmap, 200, 200); // Adjust width and height as needed
+
+                        LocationPuck2D locationPuck2D = new LocationPuck2D();
+                        locationPuck2D.setBearingImage(ImageHolder.from(resizedBitmap));
+                        locationComponentPlugin.setLocationPuck(locationPuck2D);
+                    }
+
+                    @Override
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                        // Handle error if image loading fails
+                        Toast.makeText(MapActivity.this, "Failed to load image", Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                        // Optionally handle image load preparation
+                    }
+                });
+
                 locationComponentPlugin.addOnIndicatorPositionChangedListener(onIndicatorPositionChangedListener);
                 locationComponentPlugin.addOnIndicatorBearingChangedListener(onIndicatorBearingChangedListener);
                 getGestures(mapView).addOnMoveListener(onMoveListener);
@@ -126,4 +157,33 @@ public class MapActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private Bitmap resizeBitmap(Bitmap bitmap, int newWidth, int newHeight) {
+        return Bitmap.createScaledBitmap(bitmap, newWidth, newHeight, true);
+    }
+    private List<Point> generateRandomPoints(Point center, double radius, int numPoints) {
+        List<Point> points = new ArrayList<>();
+        Random random = new Random();
+
+        for (int i = 0; i < numPoints; i++) {
+            double angle = 2 * Math.PI * random.nextDouble();
+            double distance = radius * Math.sqrt(random.nextDouble());
+            double dx = distance * Math.cos(angle);
+            double dy = distance * Math.sin(angle);
+
+            // Approximate lat/lon degrees per meter
+            double latPerMeter = 1 / 111320.0;
+            double lonPerMeter = 1 / (Math.cos(Math.toRadians(center.latitude())) * 111320.0);
+
+            double newLat = center.latitude() + (dx * latPerMeter);
+            double newLon = center.longitude() + (dy * lonPerMeter);
+
+            points.add(Point.fromLngLat(newLon, newLat));
+        }
+        return points;
+    }
+
+
+
 }
