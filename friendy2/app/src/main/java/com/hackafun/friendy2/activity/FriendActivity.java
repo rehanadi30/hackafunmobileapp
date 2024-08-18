@@ -84,7 +84,7 @@ public class FriendActivity extends AppCompatActivity {
 
                     case R.id.nav_home:
                         // Handle home action
-                        Intent friendsIntent = new Intent(FriendActivity.this, MainActivity.class);
+                        Intent friendsIntent = new Intent(FriendActivity.this, MainEmptyActivity.class);
                         startActivity(friendsIntent);
                         overridePendingTransition(0, 0);
                         return true;

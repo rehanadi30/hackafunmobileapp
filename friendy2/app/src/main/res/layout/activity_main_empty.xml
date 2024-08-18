@@ -87,51 +87,6 @@
                     android:backgroundTint="@android:color/black" />
             </LinearLayout>
 
-            <!-- Sliders for min similarity and min distance -->
-            <LinearLayout
-                android:id="@+id/sliders_section"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="16dp">
-
-                <!-- Min Similarity Slider -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Min Similarity" />
-
-                    <SeekBar
-                        android:id="@+id/similarity_seekbar"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-
-                <!-- Min Distance Slider -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Min Distance (m)" />
-
-                    <SeekBar
-                        android:id="@+id/distance_seekbar"
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
-            </LinearLayout>
-
             <!-- Profile card with match percentage, image, and text -->
             <LinearLayout
                 android:id="@+id/profile_card"
@@ -141,15 +96,6 @@
                 android:gravity="center"
                 android:padding="16dp">
 
-                <!-- Match Percentage -->
-                <TextView
-                    android:id="@+id/match_percentage"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="98% matched"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:gravity="center" />
 
                 <!-- Profile Image -->
                 <ImageView
@@ -165,45 +111,12 @@
                     android:id="@+id/profile_description"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="I am super friendly and love visiting cute cafes. Would love to be friends if you share the same interests! :)"
+                    android:text="No Friends found yet.\nClick Find friends to search"
                     android:textSize="14sp"
                     android:gravity="center"
                     android:paddingTop="16dp" />
             </LinearLayout>
 
-            <!-- Like and Dislike Buttons -->
-            <LinearLayout
-                android:id="@+id/action_buttons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:layout_marginTop="16dp">
-
-                <!-- Dislike Button -->
-                <ImageButton
-                    android:id="@+id/dislike_button"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/cross_circle"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:scaleType="fitCenter"
-                    android:padding="8dp" />
-
-
-                <!-- Like Button -->
-                <ImageButton
-                    android:id="@+id/like_button"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginStart="40dp"
-                    android:src="@drawable/baseline_check_circle_24"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    app:tint="@android:color/holo_green_dark"
-                    android:scaleType="fitCenter"
-                    android:padding="8dp" />
-
-            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

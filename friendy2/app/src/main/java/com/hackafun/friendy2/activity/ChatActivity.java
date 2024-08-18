@@ -54,7 +54,7 @@ public class ChatActivity extends AppCompatActivity {
 
                     case R.id.nav_home:
                         // Handle home action
-                        Intent homeIntent = new Intent(ChatActivity.this, MainActivity.class);
+                        Intent homeIntent = new Intent(ChatActivity.this, MainEmptyActivity.class);
                         startActivity(homeIntent);
                         overridePendingTransition(0, 0);
                         return true;
