@@ -50,14 +50,6 @@ public class FriendActivity extends AppCompatActivity {
             overridePendingTransition(0, 0);
         });
 
-        profileIcon.setOnClickListener(v -> {
-            // Handle profile icon click
-//            Intent intent = new Intent(FriendActivity.this, ProfileActivity.class);
-            Intent intent = new Intent(FriendActivity.this, ScanningActivity.class);
-            startActivity(intent);
-            overridePendingTransition(0, 0);
-        });
-
         // Initialize RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
