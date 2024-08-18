@@ -26,8 +26,8 @@ public class ChatActivity extends AppCompatActivity {
 
         // Sample data
         List<Chat> chatList = new ArrayList<>();
-        chatList.add(new Chat("John Doe", "Hey there!"));
-        chatList.add(new Chat("Jane Smith", "How's it going?"));
+        chatList.add(new Chat("Lo Xian Wan", "You like swimming too? That..."));
+        chatList.add(new Chat("Anna Gan", "I really hate this subject LOLL"));
         // Add more sample chats here...
 
         // Set up RecyclerView
