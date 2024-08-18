@@ -106,7 +106,7 @@ public class FriendActivity extends AppCompatActivity {
         String dateString1 = "17/08/2024";
         String dateString2 = "16/08/2024";
         friends.add(new Friend(1, "Anna Gan", dateString1, 88, "https://media.licdn.com/dms/image/D5603AQEi1ewbgZHzJg/profile-displayphoto-shrink_400_400/0/1722332667738?e=1729123200&v=beta&t=0kBYFsFQszkTwFUNqs6PYbw1BPy8HxQtMk-9NWDwidk"));
-        friends.add(new Friend(2, "Lo Xian Wan", dateString2, 34, "https://media.licdn.com/dms/image/v2/D4E35AQETt3dCJXZHMw/profile-framedphoto-shrink_400_400/profile-framedphoto-shrink_400_400/0/1723567397429?e=1724486400&v=beta&t=sUCFYA1j3IH9P1sKaGqcE0_lPrSAkFoyRMtLbzzTTew"));
+        friends.add(new Friend(2, "Lo Xian Wan", dateString2, 34, "https://cdn.discordapp.com/attachments/1274359491738992663/1274569168066449491/iu.jpeg?ex=66c2ba8a&is=66c1690a&hm=bf1f0f132f5dcca64e401966602b3eb2f0dec7bf2f0ec0e825e82ddbcffaabbe&"));
         // Add more friends
         return friends;
     }
