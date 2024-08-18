@@ -21,4 +21,7 @@
     <string name="favorite_band">Favorite Band</string>
     <string name="favorite_singer">Favorite Singer</string>
     <string name="submit_button">Submit</string>
+    <string name="photo_description">Photo</string>
+    <string name="happy_with_avatar">Are ya happy with this Avatar?</string>
+    <string name="retake_button">Retake</string>
 </resources>
